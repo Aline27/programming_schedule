@@ -1,10 +1,12 @@
+require('marko/node-require').install();
+require('marko/express');
+//require('../app/routes/routes.js');
+
 const express = require('express');
 const app = express();
 
-require('../app/routes/routes.js');
 
-require('marko/node-require').install();
-require('marko/express');
+app.use(express.static('src/app/public'));
 
 const rotas = require('../app/routes/routes.js');
 rotas(app);

@@ -16,21 +16,23 @@ module.exports = (app) => {
     });
     
     app.get('/schedule', function(req, resp) {
-        resp.marko(
-            require('../views/programmes/list/list.marko'),
-            {
-                programmes: [
-                    {
-                        id : 1,
-                        titulo: 'programa 1'
-                    },
-                    {
-                        id: 2,
-                        titulo: 'programa 2'
-                    }
-                ]
-            }
-        );
+
+        var getJSON = require('get-json')
+        var url = 'https://epg-api.video.globo.com/programmes/1337?date=2020-03-20';
+        
+        getJSON(url)
+        .then(function(response) {
+            resp.marko(
+                require('../views/programmes/list/list.marko'),
+                {                   
+                    programmes: response.programme.entries              
+                }
+            );
+        }).catch(function(error) {
+            console.log(error);
+        });
+
+
     });
 
 }

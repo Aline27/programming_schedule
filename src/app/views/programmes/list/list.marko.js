@@ -17,21 +17,21 @@ var marko_template = module.exports = require("marko/src/html").t(__filename),
 function render(input, out, __component, component, state) {
   var data = input;
 
-  out.w("<html><head><meta charset=\"utf-8\"></head><body>");
+  out.w("<html><head><meta charset=\"utf-8\"><link rel=\"stylesheet\" type=\"text/css\" href=\"/css/style.css\"></head><body>");
 
   component_globals_tag({}, out);
 
-  out.w("<h1> test2 programming schedule </h1><table><tr><td>ID</td><td>Título</td></tr>");
+  out.w("<div class=\"header\"><h1> Programação RPC </h1></div><table class=\"table_style\">");
 
-  var for__9 = 0;
+  var for__8 = 0;
 
   marko_forEach(data.programmes, function(programme) {
-    var keyscope__10 = "[" + ((for__9++) + "]");
+    var keyscope__9 = "[" + ((for__8++) + "]");
 
     out.w("<tr><td>" +
-      marko_escapeXml(programme.id) +
+      marko_escapeXml(programme.title) +
       "</td><td>" +
-      marko_escapeXml(programme.titulo) +
+      marko_escapeXml(programme.human_start_time) +
       "</td></tr>");
   });
 
@@ -39,7 +39,7 @@ function render(input, out, __component, component, state) {
 
   init_components_tag({}, out);
 
-  await_reorderer_tag({}, out, __component, "14");
+  await_reorderer_tag({}, out, __component, "13");
 
   out.w("</body> </html>");
 }
