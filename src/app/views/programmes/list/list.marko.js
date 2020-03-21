@@ -17,29 +17,31 @@ var marko_template = module.exports = require("marko/src/html").t(__filename),
 function render(input, out, __component, component, state) {
   var data = input;
 
-  out.w("<html><head><meta charset=\"utf-8\"></head><body>");
+  out.w("<html><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"><link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css\"><script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js\"></script><script src=\"https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js\"></script><script src=\"https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js\"></script></head><body>");
 
   component_globals_tag({}, out);
 
-  out.w("<h1> test2 programming schedule </h1><table><tr><td>ID</td><td>Título</td></tr>");
+  out.w(" <div class=\"jumbotron\" style=\"background-color: rgb(0, 100, 151)\"><h1 class=\"text-center\">Programação RPC</h1> </div> <div class=\"container\"> <div class=\"jumbotron\"><form action=\"/\" method=\"post\"><div><label for=\"Data\">Data:</label><input type=\"text\" id=\"data\" name=\"data\" placeholder=\"insira a data\"></div><div><label for=\"Hora\">Hora:</label><input type=\"text\" id=\"hora\" name=\"hora\" placeholder=\"HH:MM\"></div><input type=\"submit\" value=\"Pesquisar\"></form></div> </div> <div class=\"container\"> <div class=\"jumbotron\"><div class=\"table-responsive\"> <table class=\"table table-hover\">");
 
-  var for__9 = 0;
+  var for__25 = 0;
 
   marko_forEach(data.programmes, function(programme) {
-    var keyscope__10 = "[" + ((for__9++) + "]");
+    var keyscope__26 = "[" + ((for__25++) + "]");
 
     out.w("<tr><td>" +
-      marko_escapeXml(programme.id) +
+      marko_escapeXml(programme.human_start_time) +
+      "</td><td> " +
+      marko_escapeXml(programme.custom_info.BaseUTCOffset) +
       "</td><td>" +
-      marko_escapeXml(programme.titulo) +
+      marko_escapeXml(programme.title) +
       "</td></tr>");
   });
 
-  out.w("</table> ");
+  out.w("</table> </div> </div></div> ");
 
   init_components_tag({}, out);
 
-  await_reorderer_tag({}, out, __component, "14");
+  await_reorderer_tag({}, out, __component, "31");
 
   out.w("</body> </html>");
 }

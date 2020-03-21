@@ -10,8 +10,12 @@
   "author": "Aline de Oliveira",
   "license": "ISC",
   "dependencies": {
-    "express": "4.16.3",
-    "marko": "4.13.4-1"
+    "body-parser": "^1.19.0",
+    "bootstrap": "4.4.1",
+    "express": "^4.16.3",
+    "get-json": "1.0.1",
+    "marko": "4.13.4-1",
+    "mysql": "2.18.1"
   },
   "devDependencies": {
     "nodemon": "1.18.4"
