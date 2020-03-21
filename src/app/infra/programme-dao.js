@@ -17,23 +17,5 @@ class ProgrammeDao {
         });
     }
 
-    findByTitle(title){
-        return new Promise((resolve,reject) => {
-            this._db.get(
-                `
-                    SELECT * 
-                    FROM PROGRAMMES   
-                    WHERE title = ? 
-                `,
-                [title],
-                (erro, programme) => {
-                    if (erro){
-                        return reject('programme not find!');
-                    }
-                    return resolve(programme);
-                }
-            );
-        });       
+      
     }
-}
-module.exports = ProgrammeDao;

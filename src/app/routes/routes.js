@@ -1,4 +1,13 @@
 const mysql = require('mysql');
+var programmes;
+
+function get_programmes(){   
+    return programmes;
+}
+
+function set_programmes(valuepass){   
+    programmes = valuepass;
+}
 
 function execSQLQuery(sqlQry, res){
     const connection = mysql.createConnection({
@@ -19,8 +28,6 @@ function execSQLQuery(sqlQry, res){
     });
 }
 
-const ProgrammeDao = require('../infra/programme-dao'); 
-
 module.exports = (app) => {
 
     app.get('/', function(req, resp) {
@@ -29,6 +36,9 @@ module.exports = (app) => {
         
         getJSON(url)
         .then(function(response) {
+
+            set_programmes(response.programme.entries);
+
             resp.marko(
                 require('../views/programmes/list/list.marko'),
                 {                   
@@ -41,16 +51,54 @@ module.exports = (app) => {
         });
 
     });
+   
+    app.get('/insert', function(req, resp) {
 
-    // app.get('/schedule', (req, res) => {
-    //     execSQLQuery("CREATE TABLE IF NOT EXISTS Clientes (\n"+
-    //     "ID int NOT NULL AUTO_INCREMENT,\n"+
-    //     "Nome varchar(150) NOT NULL,\n"+
-    //     "CPF char(11) NOT NULL,\n"+
-    //     "PRIMARY KEY (ID)\n"+
-    //     ");", res);
+        var teste = get_programmes();
+        var title;
+        var description;
 
-    // });
+        title = teste[5].title;
+        description = teste[5].description;
+
+        console.log(title)
+        console.log(description)
+            
+        execSQLQuery("INSERT INTO Programmes (\n"+
+        "title, description) \n"+
+        " values ('"+title+"', '"+ description+ "'\n"+
+        ");", resp); 
+
+
+    });
+
+        
+    //create table
+    app.get('/create', function(req, resp) {
+        execSQLQuery("CREATE TABLE IF NOT EXISTS Programmes (\n"+
+        "ID int NOT NULL AUTO_INCREMENT,\n"+
+        "title varchar(20) NOT NULL,\n"+
+        "description char(100) NOT NULL,\n"+
+        "start_time datetime NOT NULL,\n"+
+        "PRIMARY KEY (ID)\n"+
+        ");", resp);
+
+    });
+
+    app.get('/find', function(req, resp) {
+
+        var teste = get_programmes();
+        var title;
+
+        title = teste[4].title;
+
+        execSQLQuery("SELECT *FROM Programmes \n"+
+        "WHERE TITLE  like '"+title+"'\n"+
+        ";", resp);        
+
+    });
+
+
     
 
 }

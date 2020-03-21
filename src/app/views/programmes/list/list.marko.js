@@ -11,6 +11,7 @@ var marko_template = module.exports = require("marko/src/html").t(__filename),
     component_globals_tag = marko_loadTag(require("marko/src/components/taglib/component-globals-tag")),
     marko_forEach = marko_helpers.f,
     marko_escapeXml = marko_helpers.x,
+    marko_escapeXmlAttr = marko_helpers.xa,
     init_components_tag = marko_loadTag(require("marko/src/components/taglib/init-components-tag")),
     await_reorderer_tag = marko_loadTag(require("marko/src/taglibs/async/await-reorderer-tag"));
 
@@ -21,17 +22,17 @@ function render(input, out, __component, component, state) {
 
   component_globals_tag({}, out);
 
-  out.w(" <div class=\"jumbotron\" style=\"background-color: rgb(0, 100, 151)\"><h1 class=\"text-center\">Programação RPC</h1> </div> <div class=\"container\"> <div class=\"jumbotron\"><form action=\"/\" method=\"post\"><div><label for=\"Data\">Data:</label><input type=\"text\" id=\"data\" name=\"data\" placeholder=\"insira a data\"></div><div><label for=\"Hora\">Hora:</label><input type=\"text\" id=\"hora\" name=\"hora\" placeholder=\"HH:MM\"></div><input type=\"submit\" value=\"Pesquisar\"></form></div> </div> <div class=\"container\"> <div class=\"jumbotron\"><div class=\"table-responsive\"> <table class=\"table table-hover\">");
+  out.w(" <div class=\"jumbotron\" style=\"background-color: rgb(0, 100, 151)\"><h1 class=\"text-center\">Programação RPC</h1> </div> <div class=\"container\"> <div class=\"jumbotron\"><form action=\"/\" method=\"post\"><div class=\"row justify-content-md-center\"><div class=\"col-sm\"><label for=\"Data\">Data:</label><input type=\"text\" id=\"hora\" name=\"hora\" placeholder=\"DD:MM:YYYY\"></div><div class=\"col-sm\"><label for=\"Hora\">Hora:</label><input type=\"text\" id=\"hora\" name=\"hora\" placeholder=\"HH:mm\"></div><div class=\"col-sm\"><input type=\"submit\" value=\"Pesquisar\"></div></div></form></div> </div> <div class=\"container\"> <div class=\"jumbotron\"><div class=\"table-responsive\"> <table class=\"table table-hover\">");
 
-  var for__25 = 0;
+  var for__27 = 0;
 
   marko_forEach(data.programmes, function(programme) {
-    var keyscope__26 = "[" + ((for__25++) + "]");
+    var keyscope__28 = "[" + ((for__27++) + "]");
 
-    out.w("<tr><td>" +
+    out.w("<tr onclick=\"this.innerHTML='" +
+      marko_escapeXmlAttr(programme.description) +
+      "'\"><td>" +
       marko_escapeXml(programme.human_start_time) +
-      "</td><td> " +
-      marko_escapeXml(programme.custom_info.BaseUTCOffset) +
       "</td><td>" +
       marko_escapeXml(programme.title) +
       "</td></tr>");
@@ -41,7 +42,7 @@ function render(input, out, __component, component, state) {
 
   init_components_tag({}, out);
 
-  await_reorderer_tag({}, out, __component, "31");
+  await_reorderer_tag({}, out, __component, "32");
 
   out.w("</body> </html>");
 }

@@ -7,6 +7,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+        
     </head>
     <body>  
         <div class="jumbotron" style="background-color: rgb(0, 100, 151)">
@@ -17,33 +18,36 @@
         <div class="container">    
             <div class="jumbotron">
                 <form action="/" method="post">
-                    <div>
-                        <label for="Data">Data:</label>
-                        <input type="text" id="data" name="data" placeholder="insira a data" />
+                    <div class="row justify-content-md-center">
+                        <div class="col-sm">
+                            <label for="Data">Data:</label>
+                            <input type="text" id="hora" name="hora" placeholder="DD:MM:YYYY" />
+                        </div>
+                        <div class="col-sm">
+                            <label for="Hora">Hora:</label>
+                            <input type="text" id="hora" name="hora" placeholder="HH:mm" />
+                        </div>
+                        <div class="col-sm">
+                            <input type="submit" value="Pesquisar" />
+                        </div>
                     </div>
-                    <div>
-                        <label for="Hora">Hora:</label>
-                        <input type="text" id="hora" name="hora" placeholder="HH:MM" />
-                    </div>
-                     <input type="submit" value="Pesquisar" />
                 </form>
-
             </div>  
         </div>  
          <div class="container">    
             <div class="jumbotron">
                 <div class="table-responsive">  
                     <table class="table table-hover">
-                        <tr for (programme in data.programmes)>
+                        <tr onclick="this.innerHTML='${programme.description}'" 
+                            for (programme in data.programmes)>
                             <td>${programme.human_start_time}</td>
-                            <td>    
-                                ${programme.custom_info.BaseUTCOffset}
-                            </td>
                             <td>${programme.title}</td>
+                            
                         </tr>
                     </table>     
                 </div> 
             </div>
-        </div>       
+        </div>   
+  
     </body> 
 </html>
