@@ -1,7 +1,7 @@
 {
   "name": "programming_schedule",
   "version": "1.0.0",
-  "description": "",
+  "description": "Program created with node and mysql - Use npm start to execute",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -15,9 +15,20 @@
     "express": "^4.16.3",
     "get-json": "1.0.1",
     "marko": "4.13.4-1",
-    "mysql": "2.18.1"
+    "moment": "^2.29.1",
+    "mysql": "2.18.1",
+    "node-calendar": "^0.1.5",
+    "request": "^2.88.2"
   },
   "devDependencies": {
     "nodemon": "1.18.4"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Aline27/programming_schedule.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Aline27/programming_schedule/issues"
+  },
+  "homepage": "https://github.com/Aline27/programming_schedule#readme"
 }

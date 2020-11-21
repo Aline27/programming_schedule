@@ -22,27 +22,31 @@ function render(input, out, __component, component, state) {
 
   component_globals_tag({}, out);
 
-  out.w(" <div class=\"jumbotron\" style=\"background-color: rgb(0, 100, 151)\"><h1 class=\"text-center\">Programação RPC</h1> </div> <div class=\"container\"> <div class=\"jumbotron\"><form action=\"/\" method=\"post\"><div class=\"row justify-content-md-center\"><div class=\"col-sm\"><label for=\"Data\">Data:</label><input type=\"text\" id=\"hora\" name=\"hora\" placeholder=\"DD:MM:YYYY\"></div><div class=\"col-sm\"><label for=\"Hora\">Hora:</label><input type=\"text\" id=\"hora\" name=\"hora\" placeholder=\"HH:mm\"></div><div class=\"col-sm\"><input type=\"submit\" value=\"Pesquisar\"></div></div></form></div> </div> <div class=\"container\"> <div class=\"jumbotron\"><div class=\"table-responsive\"> <table class=\"table table-hover\">");
+  out.w(" <div class=\"jumbotron\" style=\"background-color: rgb(0, 100, 151)\"><div class=\"container\"><div class=\"text-center\"><img src=\"https://bemaqui.rpc.com.br/static/media/logo-rpc.f93c7640.png\" alt=\"rpc\" width=\"290px\" height=\"206px\"> </div> </div> <div class=\"container\"><form action=\"/\" method=\"post\"><div class=\"form-row\"><div class=\"form-group col-md-11\"><input class=\"form-control\" type=\"date\" id=\"date\" name=\"date\"></div><div class=\"form-group col-md-0\"><button type=\"submit\" class=\"btn btn-primary\">Buscar</button></div></div></form></div> </div> <div class=\"container\"><div class=\"jumbotron\"><div class=\"table-responsive\"> <table class=\"table table-hover\">");
 
-  var for__27 = 0;
+  var for__24 = 0;
 
   marko_forEach(data.programmes, function(programme) {
-    var keyscope__28 = "[" + ((for__27++) + "]");
+    var keyscope__25 = "[" + ((for__24++) + "]");
 
-    out.w("<tr onclick=\"this.innerHTML='" +
-      marko_escapeXmlAttr(programme.description) +
-      "'\"><td>" +
+    out.w("<tr onclick=\"window.location='" +
+      marko_escapeXmlAttr(programme.custom_info.URLPrograma) +
+      "'\"><td><h3>" +
       marko_escapeXml(programme.human_start_time) +
-      "</td><td>" +
+      "</h3></td><td><div class=\"row\"><div class=\"col-xs-6 col-md-3\"><img src=\"" +
+      marko_escapeXmlAttr(programme.custom_info.Graficos.ImagemURL) +
+      "\" alt=\"rpc\" width=\"200px\" height=\"100px\"></div></div></td><td><div class=\"form-group\"><h3>" +
       marko_escapeXml(programme.title) +
-      "</td></tr>");
+      "</h3><p>" +
+      marko_escapeXml(programme.description) +
+      "</p></div> </td></tr>");
   });
 
-  out.w("</table> </div> </div></div> ");
+  out.w("</table> </div> </div> </div>");
 
   init_components_tag({}, out);
 
-  await_reorderer_tag({}, out, __component, "32");
+  await_reorderer_tag({}, out, __component, "37");
 
   out.w("</body> </html>");
 }
