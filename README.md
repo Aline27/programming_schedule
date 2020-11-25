@@ -7,3 +7,5 @@ Program created with node
 2- Use npm i to install the packages (if the package-lock.json file exist in the directory, delete it) ;
 
 3- Use npm start to execute
+
+4- Open http://localhost:3000/
